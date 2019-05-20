@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Applib extends TestBaseClass {
 
-	// locators
+	// common locators
 
 	@FindBy(how = How.CSS, using = "span[id*='add-']")
 	static WebElement btn_newRequisition;
