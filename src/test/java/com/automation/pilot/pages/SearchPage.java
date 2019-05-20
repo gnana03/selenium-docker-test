@@ -14,7 +14,9 @@ public class SearchPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
-
+    
+//  locators
+    
     @FindBy(name="q")
     private WebElement searchTxt;
 
