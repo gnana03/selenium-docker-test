@@ -1,7 +1,7 @@
 package selenium_docker_test.selenium_docker_test;
 
 /**
- * Hello world!
+ * Hello world program!
  *
  */
 public class App 
