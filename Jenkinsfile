@@ -10,16 +10,18 @@ pipeline {
         }
         stage('Build Image') {
             steps {
+		    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 //sh
-                bat "docker build -t autodocker/selenium-docker ."
-            }
+                bat "docker build -t ${user}/selenium-docker ."
+            	}
+	    }
         }
         stage('Push Image') {
             steps {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
 			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push autodocker/selenium-docker:latest"
+			        bat "docker push ${user}/selenium-docker:latest"
 			    }                           
             }
         }
