@@ -18,10 +18,9 @@ ADD target/libs							libs
 ADD testng.xml					testng.xml
 
 # ADD health check script
-ADD healthcheck.sh                      healthcheck.sh
-
+RUN wget https://s3.amazonaws.com/selenium-docker/healthcheck/healthcheck.sh
+ 
 # BROWSER
 # HUB_HOST
 # MODULE
-
 ENTRYPOINT sh healthcheck.sh
