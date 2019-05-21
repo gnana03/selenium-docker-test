@@ -11,6 +11,7 @@ ADD target/selenium-docker.jar 			selenium-docker.jar
 ADD target/selenium-docker-tests.jar 	selenium-docker-tests.jar
 ADD target/libs							libs
 ADD Data/TestData.properties    Data/TestData.properties
+ADD extent-config.xml	extent-config.xml
 
 # in case of any other dependency like .csv / .json / .xls
 # please ADD that as well
