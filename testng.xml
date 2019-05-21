@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests" thread-count="5">
+<listeners>
+<listener class-name="com.automation.pilot.listeners.RetryTests"/>
+<listener class-name="com.automation.pilot.listeners.IgnoreDuplicateTests"/>
+<listener class-name="com.automation.pilot.listeners.ExtentReportGenerator"/>
+</listeners>
+   <test name="search-test-java">
+        <parameter name="keyword" value="java" />
+        <classes>
+            <class name="com.automation.pilot.tests.TestGoogleSearch" />
+        </classes>
+    </test>
+    <test name="search-test-webdriver">
+        <parameter name="keyword" value="webdriver" />
+        <classes>
+            <class name="com.automation.pilot.tests.TestGoogleSearch" />
+        </classes>
+    </test>
+    <test name="search-test-docker">
+        <parameter name="keyword" value="docker" />
+        <classes>
+            <class name="com.automation.pilot.tests.TestGoogleSearch" />
+        </classes>
+    </test>
+    <test name="search-test-kubernetes">
+        <parameter name="keyword" value="kubernetes" />
+        <classes>
+            <class name="com.automation.pilot.tests.TestGoogleSearch" />
+        </classes>
+    </test>
+</suite> <!-- Suite -->
