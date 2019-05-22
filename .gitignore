@@ -1,0 +1,8 @@
+*.class
+**/ExtentReports
+**/target
+**/extent-reports
+**/results-output
+**/Screenshots
+*.project
+
