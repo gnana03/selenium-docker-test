@@ -18,7 +18,7 @@ services:
     environment:
       - HUB_HOST=hub
   testng:
-    image: gnana3/seleniumtest
+    image: gnana3/selenium-docker
     depends_on: 
       - chrome
       - firefox

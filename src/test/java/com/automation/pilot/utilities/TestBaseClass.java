@@ -102,7 +102,7 @@ public class TestBaseClass extends ExtentReportGenerator {
 //		driver.manage().window().maximize();
 		getDriver().manage().deleteAllCookies();
 		applib = PageFactory.initElements(getDriver(), Applib.class);
-//		getDriver().get(url);
+		getDriver().get(url);
 //		loginApp.login(userName, password);
 		logger.debug("Login is sucessful");
 
