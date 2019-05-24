@@ -20,7 +20,7 @@ ADD healthcheck.sh healthcheck.sh
 ADD testng.xml					testng.xml
 
 # ADD health check script
-RUN wget https://s3.amazonaws.com/selenium-docker/healthcheck/healthcheck.sh
+# RUN wget https://s3.amazonaws.com/selenium-docker/healthcheck/healthcheck.sh
  
 # BROWSER
 # HUB_HOST
