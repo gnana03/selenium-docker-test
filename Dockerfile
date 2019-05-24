@@ -12,7 +12,7 @@ ADD target/selenium-docker-tests.jar 	selenium-docker-tests.jar
 ADD target/libs							libs
 ADD Data/TestData.properties    Data/TestData.properties
 ADD extent-config.xml	extent-config.xml
-ADD healthcheck.sh healthcheck.sh
+#ADD healthcheck.sh healthcheck.sh
 # in case of any other dependency like .csv / .json / .xls
 # please ADD that as well
 
@@ -20,7 +20,7 @@ ADD healthcheck.sh healthcheck.sh
 ADD testng.xml					testng.xml
 
 # ADD health check script
-# RUN wget https://s3.amazonaws.com/selenium-docker/healthcheck/healthcheck.sh
+RUN wget https://s3.amazonaws.com/selenium-docker/healthcheck/healthcheck.sh
  
 # BROWSER
 # HUB_HOST
