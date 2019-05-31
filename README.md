@@ -6,8 +6,8 @@ Version	Date	Author	Rationale
 0.1	24/05/2019	Gnana Lakshmi Kilambhi	Fist Draft
 
 
-# 0	Preface
-0.1	Purpose of this document
+# 0.1	Preface
+# 0.2	Purpose of this document
 This document is a generic Technical Design Document which can be utilized across the projects in order to ease the Automation Environment setup in different operating systems. It provides guidance and template material which is intended to assist the infrastructure management. 
 # 0.3	Overview
 　　In today’s world continuous delivery is the challenging aspect in order to accelerate product delivery velocity,innovation and time to market.
