@@ -1,4 +1,4 @@
-# selenium-docker-test test
+# selenium-docker-test
 
 Infrastructure Automation
 Technical Design Document
@@ -6,16 +6,16 @@ Version	Date	Author	Rationale
 0.1	24/05/2019	Gnana Lakshmi Kilambhi	Fist Draft
 
 
-0	Preface
+# 0	Preface
 0.1	Purpose of this document
 This document is a generic Technical Design Document which can be utilized across the projects in order to ease the Automation Environment setup in different operating systems. It provides guidance and template material which is intended to assist the infrastructure management. 
-0.3	Overview
+# 0.3	Overview
 　　In today’s world continuous delivery is the challenging aspect in order to accelerate product delivery velocity,innovation and time to market.
 　　In a product delivery life cycle Testing phase plays a major role to assess the quality of a product before it actually been delivered to the end customer. To speed up the delivery cycle and ensure the best quality of the product, automating the tests according to the customer use cases adds value to the product.
 　　Based on several deciding factors the automation tools can be decided and executed. This document mainly concentrates on automating the environment setup to execute the automation tests easily and also it eases the upgradation of automation environment.
 　　Goal is to containerize the test automation framework and create a disposable selenium infrastructure , create on demand and dispose when not required.
 　　
-0.3 PREREQUISITES
+# 0.3 PREREQUISITES
 　　Install docker based on your operating system. After the successful installation of Docker verify below command by launching the command prompt /terminal 
 　　docker --version.
 　　If above command shows the installed docker version the installation is complete, If not please verify and re install.
@@ -26,30 +26,29 @@ This document is a generic Technical Design Document which can be utilized acros
 　　
 　　
 　　
-0.4 STEPS TO EXECUTE
-0.4.1 Dckerfile and Jenkinsfile setup 
+# 0.4 STEPS TO EXECUTE
+# 0.4.1 Dckerfile and Jenkinsfile setup 
 Place below lines in a blank file and save it as “Dockerfile”(name should as it is) in your respective project oustide of “src” folder.
 FROM openjdk:8u191-jre-alpine3.8
 RUN apk add curl jq
 
-# Workspace
+#Workspace
 WORKDIR /usr/share/project
 
-# ADD .jar under target from host
-# into this image
+#ADD .jar under target from host
+#into this image
 ADD target/selenium-docker.jar selenium-docker.jar
 ADD target/selenium-docker-tests.jar selenium-docker-tests.jar
 ADD target/libs libs
 ADD Data/TestData.properties Data/TestData.properties
 ADD extent-config.xml extent-config.xml
 #ADD healthcheck.sh healthcheck.sh
-# in case of any other dependency like .csv / .json / .xls
-# please ADD that as well
+#in case of any other dependency like .csv / .json / .xls please ADD that as well
 
-# ADD suite files
+#ADD suite files
 ADD testng.xml testng.xml
 
-# ADD health check script
+#ADD health check script
 RUN wget https://s3.amazonaws.com/selenium-docker/healthcheck/healthcheck.sh
 
 Create a file called Jenkinsfile (outside of src folder and where Dockerfile is placed) and place below lines inside it. ( For windows OS only) .
@@ -110,7 +109,7 @@ sh"docker push ${user}/selenium-docker:latest"
 }
 
 
-0.4.2 modification of pom.xml 
+# 0.4.2 modification of pom.xml 
 　　Include below lines inside pom.xml
 <dependencies>
 <dependency>
@@ -174,20 +173,20 @@ ${project.build.directory}/libs
 </build>
 　　
 　　
-0.4.2 Installing Jenkins using Docker 
+# 0.4.2 Installing Jenkins using Docker 
 Execute below commands in a remote server where the tests to be executed on jenkins. 
 　　docker pull jenkins/jenkins:lts
 　　docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts .
 Navigate through localhost:8080 and setup the password followed by default plugins.
 
-0.4.3 GitHub Hooks configuration
+# 0.4.3 GitHub Hooks configuration
  	 In settings of the project create a webhook with jenkins url as in below. (provide complete URL where jenkins is running instead pf localhost)
 　　
-0.4.3 Creation of Jenkins jobs
-0.4.3.1 SELENIUM-DOCKER-BUILDER
+# 0.4.3 Creation of Jenkins jobs
+# 0.4.3.1 SELENIUM-DOCKER-BUILDER
 　　Create a new job called SELENIUM-DOCKER-BUILDER pipeline and provide the github project details along with the jenkinsfile and pollSCM with cran form of  “* * * * *” to poll every minute and trigger the build on push request.
 　　Provide pipeline script from SCM amd place the complete path with credentials being added.
-0.4.3.2 TEST_EXECUTOR
+# 0.4.3.2 TEST_EXECUTOR
 　　Place below files in another github project (Jenkinsfile and docker-compose.yml).
 　　Edit the below contents inside Jenkinsfile
 pipeline{
@@ -267,4 +266,4 @@ volumes:
 Create a pipeline job called TEST_EXECUTOR in jenkins and place the above jenkinsfile from github.
 Create a dependancy of SELENIUM-DOCKER-BUILDER job with TEST_EXECUTOR job so that SELENIUM-DOCKER-BUILDER is executed first followed by TEST_EXECUTOR in jenkins.
 
-Note : This can be integrated with AWS and Zalenium 
+# Note : This can be integrated with AWS and Zalenium 
